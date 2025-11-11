@@ -1,0 +1,31 @@
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  color: var(--color-text-primary);
+
+  a,
+  button {
+    color: inherit !important;
+    text-decoration: none !important;
+    font: inherit !important;
+    background: none !important;
+    border: none !important;
+    padding: 12px 0 !important;
+    text-align: left !important;
+    width: 100% !important;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--color-primary) !important;
+    }
+  }
+
+  @include tablet {
+    flex-direction: row;
+    align-items: center;
+  }
+}

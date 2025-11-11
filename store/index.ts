@@ -1,13 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-
-const dummyReducer = (state = {}) => state;
+import uiReducer from './ui/slice';
 
 export const store = configureStore({
   reducer: {
-    dummy: dummyReducer,
-    // Добавишь слайсы позже
-    // user: userReducer,
+    ui: uiReducer,
   },
 });
 
