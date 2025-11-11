@@ -8,11 +8,16 @@ export function useMedia() {
     (state) => state.ui
   );
 
+  // ВАЖНО: если ещё не инициализировано — считаем мобильным!
+  const isMobile = !isInitialized ? true : media === MEDIA.MOBILE;
+  const isTablet = media === MEDIA.TABLET;
+  const isDesktop = media === MEDIA.DESKTOP;
+
   return {
     media,
-    isMobile: media === MEDIA.MOBILE,
-    isTablet: media === MEDIA.TABLET,
-    isDesktop: media === MEDIA.DESKTOP,
+    isMobile,
+    isTablet,
+    isDesktop,
     screenWidth,
     screenHeight,
     isInitialized,

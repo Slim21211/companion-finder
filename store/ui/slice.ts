@@ -2,19 +2,17 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUIState, MEDIA } from './types';
 
 const initialState: IUIState = {
-  media: MEDIA.DESKTOP, // Дефолт (до инициализации)
-  screenWidth: 1920,
-  screenHeight: 1080,
-  isInitialized: false,
+  // ВАЖНО: по умолчанию считаем мобильным!
+  media: MEDIA.MOBILE,
+  screenWidth: 375, // типичная мобильная ширина
+  screenHeight: 667,
+  isInitialized: false, // до первого измерения — не инициализировано
 };
 
 const uiReducer = createSlice({
   name: 'ui',
   initialState,
   reducers: {
-    setMedia: (state, { payload }: PayloadAction<MEDIA>) => {
-      state.media = payload;
-    },
     setScreenSize: (
       state,
       { payload }: PayloadAction<{ width: number; height: number }>
@@ -22,7 +20,7 @@ const uiReducer = createSlice({
       state.screenWidth = payload.width;
       state.screenHeight = payload.height;
 
-      // Автоматически определяем media на основе ширины
+      // Определяем медиа
       if (payload.width < 768) {
         state.media = MEDIA.MOBILE;
       } else if (payload.width < 1024) {
@@ -36,5 +34,5 @@ const uiReducer = createSlice({
   },
 });
 
-export const { setMedia, setScreenSize } = uiReducer.actions;
+export const { setScreenSize } = uiReducer.actions;
 export default uiReducer.reducer;
